@@ -46,17 +46,17 @@ library(ggplot2)
 ### 
 
 # School boundaries (spatial) 
-school_boundaries <- st_read("../Data/School_Boundaries/School_Boundaries.shp", 
+school_boundaries <- st_read("./Data/School_Boundaries/School_Boundaries.shp", 
                              stringsAsFactors = FALSE, 
                              quiet = TRUE)  
 
 # Abandoned Property Data (spatial) 
-data_abandoned <- st_read("../Data/Abandoned_Property_Parcels/Abandoned_Property_Parcels.shp", 
+data_abandoned <- st_read("./Data/Abandoned_Property_Parcels/Abandoned_Property_Parcels.shp", 
                           stringsAsFactors = FALSE, 
                           quiet = TRUE) 
 
 # Abandoned Property Data (spatial)
-council_districts <- st_read("../Data/City_Council_Districts/City_Council_Districts.shp", 
+council_districts <- st_read("./Data/City_Council_Districts/City_Council_Districts.shp", 
                              stringsAsFactors = FALSE, 
                              quiet = TRUE) 
 
@@ -71,7 +71,7 @@ council_districts <- st_read("../Data/City_Council_Districts/City_Council_Distri
 ###
 
 # Park locations and features (csv)
-parksAndFeatures <- read.csv("../Data/Parks_Locations_and_Features.csv")
+parksAndFeatures <- read.csv("./Data/Parks_Locations_and_Features.csv")
 
 # Park locations and features prep for spatial
 parksAndFeatures.spatial <- parksAndFeatures %>% 
@@ -83,7 +83,7 @@ parksAndFeatures.spatial$popup <- paste("<b>",parksAndFeatures.spatial$Park_Name
                                         "Type: ",parksAndFeatures.spatial$Park_Type,"<br>",
                                         "Address: ",parksAndFeatures.spatial$Address,sep ="")
 
-Public_Facilities <- read.csv("../Data/Public_Facilities.csv")
+Public_Facilities <- read.csv("./Data/Public_Facilities.csv")
 
 Public_Facilities <- Public_Facilities[Public_Facilities$POPL_TYPE != "LIBRARY", ]
 
@@ -95,7 +95,7 @@ Public_Facilities.spatial$popup <- paste("<b>",Public_Facilities.spatial$POPL_NA
                                          "Type: ",Public_Facilities.spatial$POPL_TYPE,"<br>",
                                          "Address: ",Public_Facilities.spatial$POPL_ADDR1,sep ="")
 
-Public_Facilities <- read.csv("../Data/Public_Facilities.csv")
+Public_Facilities <- read.csv("./Data/Public_Facilities.csv")
 
 Public_Facilities <- Public_Facilities[Public_Facilities$POPL_TYPE != "LIBRARY", ]
 
@@ -318,8 +318,8 @@ dist_school_to_responder <- st_distance(school_boundaries, Public_Facilities.spa
 ###
 
 #Call datasets
-boundaries <- st_read("../Data/School_Boundaries/School_Boundaries.shp")
-lights = read_csv("../Data/Street_Lights.csv")
+boundaries <- st_read("./Data/School_Boundaries/School_Boundaries.shp")
+lights = read_csv("./Data/Street_Lights.csv")
 #Create geometry column for lights
 lights = lights %>%  st_as_sf(coords = c("Lon","Lat")) %>% st_set_crs(value = 4326)
 #Find the distance between lights and the school boundaries.
